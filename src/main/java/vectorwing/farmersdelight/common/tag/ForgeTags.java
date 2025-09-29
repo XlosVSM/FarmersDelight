@@ -16,6 +16,18 @@ public class ForgeTags
 	// Blocks that are efficiently mined with a Knife.
 	public static final TagKey<Block> MINEABLE_WITH_KNIFE = forgeBlockTag("mineable/knife");
 
+	public static final TagKey<Block> STORAGE_BLOCKS_CARROT = forgeBlockTag("storage_blocks/carrot");
+	public static final TagKey<Block> STORAGE_BLOCKS_POTATO = forgeBlockTag("storage_blocks/potato");
+	public static final TagKey<Block> STORAGE_BLOCKS_BEETROOT = forgeBlockTag("storage_blocks/beetroot");
+	public static final TagKey<Block> STORAGE_BLOCKS_CABBAGE = forgeBlockTag("storage_blocks/cabbage");
+	public static final TagKey<Block> STORAGE_BLOCKS_TOMATO = forgeBlockTag("storage_blocks/tomato");
+	public static final TagKey<Block> STORAGE_BLOCKS_ONION = forgeBlockTag("storage_blocks/onion");
+	public static final TagKey<Block> STORAGE_BLOCKS_RICE = forgeBlockTag("storage_blocks/rice");
+	public static final TagKey<Block> STORAGE_BLOCKS_RICE_PANICLE = forgeBlockTag("storage_blocks/rice_panicle");
+	public static final TagKey<Block> STORAGE_BLOCKS_STRAW = forgeBlockTag("storage_blocks/straw");
+
+	// -------
+
 	public static final TagKey<Item> BERRIES = forgeItemTag("berries");
 
 	public static final TagKey<Item> BREAD = forgeItemTag("bread");
@@ -83,6 +95,18 @@ public class ForgeTags
 	public static final TagKey<Item> TOOLS_KNIVES = forgeItemTag("tools/knives");
 	public static final TagKey<Item> TOOLS_PICKAXES = forgeItemTag("tools/pickaxes");
 	public static final TagKey<Item> TOOLS_SHOVELS = forgeItemTag("tools/shovels");
+
+	public static final TagKey<Item> BUCKETS_WATER = forgeItemTag("buckets/water");
+
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_CARROT = forgeItemTag("storage_blocks/carrot");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_POTATO = forgeItemTag("storage_blocks/potato");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_BEETROOT = forgeItemTag("storage_blocks/beetroot");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_CABBAGE = forgeItemTag("storage_blocks/cabbage");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_TOMATO = forgeItemTag("storage_blocks/tomato");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_ONION = forgeItemTag("storage_blocks/onion");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_RICE = forgeItemTag("storage_blocks/rice");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_RICE_PANICLE = forgeItemTag("storage_blocks/rice_panicle");
+	public static final TagKey<Item> STORAGE_BLOCKS_ITEM_STRAW = forgeItemTag("storage_blocks/straw");
 
 	private static TagKey<Block> forgeBlockTag(String path) {
 		return BlockTags.create(new ResourceLocation("forge", path));

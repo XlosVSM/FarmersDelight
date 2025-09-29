@@ -1,6 +1,9 @@
 package vectorwing.farmersdelight.client.recipebook;
 
-public enum CookingPotRecipeBookTab
+import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
+
+public enum CookingPotRecipeBookTab implements StringRepresentable
 {
 	MEALS("meals"),
 	DRINKS("drinks"),
@@ -23,6 +26,11 @@ public enum CookingPotRecipeBookTab
 
 	@Override
 	public String toString() {
+		return this.name;
+	}
+
+	@Override
+	public @NotNull String getSerializedName() {
 		return this.name;
 	}
 }

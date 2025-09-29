@@ -35,7 +35,9 @@ public class ItemTags extends ItemTagsProvider
 		this.registerForgeTags();
 		this.registerCompatibilityTags();
 	}
+
 	private void registerMinecraftTags() {
+		tag(net.minecraft.tags.ItemTags.TOOLS).addTag(ModTags.KNIVES);
 		tag(net.minecraft.tags.ItemTags.TALL_FLOWERS).add(ModItems.WILD_RICE.get());
 		tag(net.minecraft.tags.ItemTags.PIGLIN_LOVED).add(ModItems.GOLDEN_KNIFE.get());
 		tag(net.minecraft.tags.ItemTags.SIGNS).addTag(ModTags.CANVAS_SIGNS);
@@ -47,6 +49,46 @@ public class ItemTags extends ItemTagsProvider
 	}
 
 	private void registerModTags() {
+		tag(ModTags.MEALS).add(
+				ModItems.MIXED_SALAD.get(),
+				ModItems.COOKED_RICE.get(),
+				ModItems.BONE_BROTH.get(),
+				ModItems.BEEF_STEW.get(),
+				ModItems.VEGETABLE_SOUP.get(),
+				ModItems.FISH_STEW.get(),
+				ModItems.CHICKEN_SOUP.get(),
+				ModItems.FRIED_RICE.get(),
+				ModItems.PUMPKIN_SOUP.get(),
+				ModItems.BAKED_COD_STEW.get(),
+				ModItems.NOODLE_SOUP.get(),
+				ModItems.BACON_AND_EGGS.get(),
+				ModItems.RATATOUILLE.get(),
+				ModItems.STEAK_AND_POTATOES.get(),
+				ModItems.PASTA_WITH_MEATBALLS.get(),
+				ModItems.PASTA_WITH_MUTTON_CHOP.get(),
+				ModItems.MUSHROOM_RICE.get(),
+				ModItems.ROASTED_MUTTON_CHOPS.get(),
+				ModItems.VEGETABLE_NOODLES.get(),
+				ModItems.SQUID_INK_PASTA.get(),
+				ModItems.GRILLED_SALMON.get(),
+				ModItems.ROAST_CHICKEN.get(),
+				ModItems.STUFFED_PUMPKIN.get(),
+				ModItems.HONEY_GLAZED_HAM.get(),
+				ModItems.SHEPHERDS_PIE.get()
+		);
+		tag(ModTags.DRINKS).add(
+				ModItems.MILK_BOTTLE.get(),
+				ModItems.APPLE_CIDER.get(),
+				ModItems.MELON_JUICE.get(),
+				ModItems.HOT_COCOA.get()
+		);
+		tag(ModTags.FEASTS).add(
+				ModItems.ROAST_CHICKEN_BLOCK.get(),
+				ModItems.STUFFED_PUMPKIN_BLOCK.get(),
+				ModItems.SHEPHERDS_PIE_BLOCK.get(),
+				ModItems.HONEY_GLAZED_HAM_BLOCK.get(),
+				ModItems.RICE_ROLL_MEDLEY_BLOCK.get()
+		);
 		tag(ModTags.KNIVES).add(ModItems.FLINT_KNIFE.get(), ModItems.IRON_KNIFE.get(), ModItems.DIAMOND_KNIFE.get(), ModItems.GOLDEN_KNIFE.get(), ModItems.NETHERITE_KNIFE.get());
 		tag(ModTags.STRAW_HARVESTERS).addTag(ModTags.KNIVES);
 		tag(ModTags.WOLF_PREY).addTag(ForgeTags.RAW_CHICKEN).addTag(ForgeTags.RAW_MUTTON).add(Items.RABBIT);
@@ -100,7 +142,7 @@ public class ItemTags extends ItemTagsProvider
 				.add(ModItems.CRIMSON_CABINET.get())
 				.add(ModItems.WARPED_CABINET.get());
 		tag(ModTags.CABINETS).addTag(ModTags.WOODEN_CABINETS);
-		tag(ModTags.OFFHAND_EQUIPMENT).add(Items.SHIELD)
+		tag(ModTags.OFFHAND_EQUIPMENT).addTag(Tags.Items.TOOLS_SHIELDS)
 				.addOptional(new ResourceLocation("create:extendo_grip"));
 		tag(ModTags.SERVING_CONTAINERS).add(Items.BOWL, Items.GLASS_BOTTLE, Items.BUCKET);
 		tag(ModTags.FLAT_ON_CUTTING_BOARD).add(Items.TRIDENT, Items.SPYGLASS)
@@ -168,6 +210,16 @@ public class ItemTags extends ItemTagsProvider
 		tag(ForgeTags.SEEDS_RICE).add(ModItems.RICE.get());
 		tag(ForgeTags.SEEDS_TOMATO).add(ModItems.TOMATO_SEEDS.get());
 
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_CARROT).add(ModItems.CARROT_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_POTATO).add(ModItems.POTATO_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_BEETROOT).add(ModItems.BEETROOT_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_CABBAGE).add(ModItems.CABBAGE_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_TOMATO).add(ModItems.TOMATO_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_ONION).add(ModItems.ONION_CRATE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_RICE).add(ModItems.RICE_BAG.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_RICE_PANICLE).add(ModItems.RICE_BALE.get());
+		tag(ForgeTags.STORAGE_BLOCKS_ITEM_STRAW).add(ModItems.STRAW_BALE.get());
+
 		tag(ForgeTags.VEGETABLES).addTags(ForgeTags.VEGETABLES_BEETROOT, ForgeTags.VEGETABLES_CARROT, ForgeTags.VEGETABLES_ONION, ForgeTags.VEGETABLES_POTATO, ForgeTags.VEGETABLES_TOMATO);
 		tag(ForgeTags.VEGETABLES_BEETROOT).add(Items.BEETROOT);
 		tag(ForgeTags.VEGETABLES_CARROT).add(Items.CARROT);
@@ -180,14 +232,19 @@ public class ItemTags extends ItemTagsProvider
 		tag(ForgeTags.TOOLS_KNIVES).add(ModItems.FLINT_KNIFE.get(), ModItems.IRON_KNIFE.get(), ModItems.DIAMOND_KNIFE.get(), ModItems.GOLDEN_KNIFE.get(), ModItems.NETHERITE_KNIFE.get());
 		tag(ForgeTags.TOOLS_PICKAXES).add(Items.WOODEN_PICKAXE, Items.STONE_PICKAXE, Items.IRON_PICKAXE, Items.DIAMOND_PICKAXE, Items.GOLDEN_PICKAXE, Items.NETHERITE_PICKAXE);
 		tag(ForgeTags.TOOLS_SHOVELS).add(Items.WOODEN_SHOVEL, Items.STONE_SHOVEL, Items.IRON_SHOVEL, Items.DIAMOND_SHOVEL, Items.GOLDEN_SHOVEL, Items.NETHERITE_SHOVEL);
+
+		tag(ForgeTags.BUCKETS_WATER).add(Items.WATER_BUCKET);
 	}
 
 	public void registerCompatibilityTags() {
 		tag(CompatibilityTags.CREATE_UPRIGHT_ON_BELT)
-				.add(ModItems.MILK_BOTTLE.get())
-				.add(ModItems.HOT_COCOA.get())
-				.add(ModItems.APPLE_CIDER.get())
-				.add(ModItems.MELON_JUICE.get())
+				.addTag(ModTags.MEALS)
+				.addTag(ModTags.DRINKS)
+				.addTag(ModTags.FEASTS)
+				.add(ModItems.TOMATO_SAUCE.get())
+				.add(ModItems.DOG_FOOD.get())
+				.add(ModItems.FRUIT_SALAD.get())
+				.add(ModItems.NETHER_SALAD.get())
 				.add(ModItems.PIE_CRUST.get())
 				.add(ModItems.APPLE_PIE.get())
 				.add(ModItems.SWEET_BERRY_CHEESECAKE.get())

@@ -3,7 +3,6 @@ package vectorwing.farmersdelight.common.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import vectorwing.farmersdelight.common.Configuration;
@@ -19,23 +19,28 @@ import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.ModTags;
 import vectorwing.farmersdelight.common.utility.MathUtils;
 
+import javax.annotation.Nullable;
+
 public class RichSoilFarmlandBlock extends FarmBlock
 {
 	public RichSoilFarmlandBlock(Properties properties) {
 		super(properties);
 	}
 
-	private static boolean hasWater(LevelReader level, BlockPos pos) {
-		for (BlockPos nearbyPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-			if (level.getFluidState(nearbyPos).is(FluidTags.WATER)) {
+	private static boolean isNearWater(LevelReader level, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		for(BlockPos nearbyPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+			if (state.canBeHydrated(level, pos, level.getFluidState(nearbyPos), nearbyPos)) {
 				return true;
 			}
 		}
+
 		return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(level, pos);
 	}
 
-	public static void turnToRichSoil(BlockState state, Level level, BlockPos pos) {
+	public static void turnToRichSoil(@Nullable Entity entity, BlockState state, Level level, BlockPos pos) {
 		level.setBlockAndUpdate(pos, pushEntitiesUp(state, ModBlocks.RICH_SOIL.get().defaultBlockState(), level, pos));
+		level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, state));
 	}
 
 	@Override
@@ -55,14 +60,14 @@ public class RichSoilFarmlandBlock extends FarmBlock
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		if (!state.canSurvive(level, pos)) {
-			turnToRichSoil(state, level, pos);
+			turnToRichSoil(null, state, level, pos);
 		}
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		int moisture = state.getValue(MOISTURE);
-		if (!hasWater(level, pos) && !level.isRainingAt(pos.above())) {
+		if (!isNearWater(level, pos) && !level.isRainingAt(pos.above())) {
 			if (moisture > 0) {
 				level.setBlock(pos, state.setValue(MOISTURE, moisture - 1), 2);
 			}
@@ -104,7 +109,7 @@ public class RichSoilFarmlandBlock extends FarmBlock
 	}
 
 	@Override
-	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
-		// Rich Soil is immune to trampling
+	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+		entity.causeFallDamage(fallDistance, 1.0F, entity.damageSources().fall());
 	}
 }

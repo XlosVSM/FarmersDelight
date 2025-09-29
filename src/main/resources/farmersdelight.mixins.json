@@ -8,6 +8,7 @@
     "CuttingBoardDispenserMixin",
     "KeepRichSoilGiantTreeMixin",
     "KeepRichSoilTreeMixin",
+    "KeepRichSoilUntrampledMixin",
     "RabbitsEatCabbageMixin",
     "SoupItemMixin",
     "accessor.RecipeManagerAccessor"

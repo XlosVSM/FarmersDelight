@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 import vectorwing.farmersdelight.common.crafting.CuttingBoardRecipe;
+import vectorwing.farmersdelight.common.crafting.DoughRecipe;
 import vectorwing.farmersdelight.common.crafting.FoodServingRecipe;
 
 public class ModRecipeSerializers
@@ -19,4 +20,6 @@ public class ModRecipeSerializers
 
 	public static final RegistryObject<SimpleCraftingRecipeSerializer<?>> FOOD_SERVING =
 			RECIPE_SERIALIZERS.register("food_serving", () -> new SimpleCraftingRecipeSerializer<>(FoodServingRecipe::new));
+	public static final RegistryObject<SimpleCraftingRecipeSerializer<?>> DOUGH =
+			RECIPE_SERIALIZERS.register("dough", () -> new SimpleCraftingRecipeSerializer<>(DoughRecipe::new));
 }
